@@ -546,30 +546,155 @@
 //   return word[0].toUpperCase()+word.slice(1).toLowerCase()
 // }
 
-function nestedEvenSum () {
-  // add whatever parameters you deem necessary - good luck!
-}
+// function nestedEvenSum (obj) {
+//   let evenArr = [];
+//   let total = 0;
+//   return sum(inner(obj,evenArr),total)
+// }
+
+// function inner(obj,arr){
+//   for(let key in obj){
+//     if(thingOrNot(obj[key],"number")){
+//       isEven(obj[key],arr);
+//     }
+
+//       if(thingOrNot(obj[key],"object")){
+//         inner(obj[key],arr);
+//       }
+//   }
+//   return arr
+  
+// }
+
+// function thingOrNot(something, thing){
+//   return (typeof(something)===thing)
+// }
+
+// function isEven(num,arr){
+//   if (num % 2 == 0){
+//     arr.push(num)
+//   }
+//   return arr
+// }
+
+// function sum(arr,total){
+//   if(arr.length === 0){
+//     return total;
+//   }
+//   total += arr[0];
+//   return sum(arr.slice(1),total); 
+// }
 
 
-var obj1 = {
-  outer: 2,
-  obj: {
-    inner: 2,
-    otherObj: {
-      superInner: 2,
-      notANumber: true,
-      alsoNotANumber: "yup"
+
+// const obj1 = {
+//   outer: 2,
+//   obj: {
+//     inner: 2,
+//     otherObj: {
+//       superInner: 2,
+//       notANumber: true,
+//       alsoNotANumber: "yup"
+//     }
+//   }
+// }
+
+// const obj2 = {
+//   a: 2,
+//   za: {x: 60, bb: {z: 3, bb: {a: 20}}},
+//   c: {c: {c: 30}, cc: 'ball', ccc: 5},
+//   d: 1,
+//   e: {e: {e: 10}, ee: 'car'}
+// };
+
+// if(objectOrNot(obj[key])){
+//   console.log("lolololol")
+//   isEven(obj[key],arr)
+// }
+// if(!(objectOrNot(obj[key])))
+//   {
+//     console.log(arr)
+//     inner(obj[key],arr)
+// // }
+// console.log(nestedEvenSum(obj2))
+
+// function capitalizeWords (word) {
+//   let fullwords = []
+//   return capZ(word,fullwords)
+
+// }
+
+// function capitalize(word,singleword){
+//   if(word.length === 0){
+//     return singleword.join("")
+//   }
+//   singleword.push(word[0].toUpperCase())
+//   return capitalize(word.slice(1),singleword)
+// }
+
+// function capZ(arr,answer){
+//   let singleword = []
+//   if(arr.length === 0){
+//     return answer
+//   }
+//   answer.push(capitalize(arr[0],singleword))
+//   return capZ(arr.slice(1),answer)
+// }
+
+
+
+// let words = ['i', 'am', 'learning', 'recursion'];
+// let wordz = 'am'
+
+// console.log(capitalizeWords(words));
+// // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
+
+
+
+let obj = {
+    num: 1,
+    test: [],
+    data: {
+        val: 4,
+        info: {
+            isRight: true,
+            random: 66
+        }
     }
-  }
 }
 
-var obj2 = {
-  a: 2,
-  b: {b: 2, bb: {b: 3, bb: {b: 2}}},
-  c: {c: {c: 2}, cc: 'ball', ccc: 5},
-  d: 1,
-  e: {e: {e: 2}, ee: 'car'}
-};
 
-nestedEvenSum(obj1); // 6
-nestedEvenSum(obj2); // 10
+console.log(stringifyNumbers(obj))
+
+function stringifyNumbers (obj) {
+    let total = 0;
+    let newObject = {
+      ...obj
+    };
+    let answer = inner(newObject)
+    return answer
+  }
+  
+  function inner(objz){
+    for(let key in objz){
+      if(thingOrNot(objz[key],"number")){
+        objz[key] = stringNumber(objz[key]);
+      }
+  
+        if(thingOrNot(objz[key],"object")){
+          inner(objz[key]);
+        }
+    }
+    
+    return objz
+    
+  }
+  
+  function thingOrNot(something, thing){
+    return (typeof(something)===thing)
+  }
+  
+  function stringNumber(num){
+    return String(num)
+  }
+  

@@ -650,51 +650,235 @@
 // // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 
 
+// const obj = {
+//   stuff: "foo",
+//   data: {
+//       val: {
+//           thing: {
+//               info: "bar",
+//               moreInfo: {
+//                   evenMoreInfo: {
+//                       weMadeIt: "baz"
+//                   }
+//               }
+//           }
+//       }
+//   }
+// }
 
-let obj = {
-    num: 1,
-    test: [],
-    data: {
-        val: 4,
-        info: {
-            isRight: true,
-            random: 66
-        }
+
+
+
+
+// function stringifyNumbers (obj) {
+//     let total = 0;
+//     let newObject = objectMaker(obj);
+
+//     return inner(newObject);
+//   }
+  
+//   function objectMaker(objz){
+//     let answer = {};
+//     for(let key in objz){
+//       if(!answer[key]){
+//         answer[key] = objz[key]
+//       }
+//     }
+//     return answer
+//   }
+
+//   function inner(objz){
+
+//     for(let key in objz){
+//       if(thingOrNot(objz[key],"number")){
+//         objz[key]=stringNumber(objz[key])
+      
+//       }
+  
+//         if(thingOrNot(objz[key],"object")){
+//           inner(objz[key]);
+//         }
+//     }
+//     return objz
+//   }
+  
+//   function thingOrNot(something, thing){
+//     return (typeof(something)===thing)
+//   }
+  
+//   function stringNumber(num){
+//     return String(num)
+//   }
+  
+//   let obj = {
+//     num: 1,
+//     test: [],
+//     data: {
+//         val: 4,
+//         info: {
+//             isRight: true,
+//             random: 66
+//         }
+//     }
+// }
+
+// console.log(stringifyNumbers(obj))
+
+
+
+// const testNumber = 12
+// function findIndex(arr,number){
+//   for(let i = 0;i<arr.length;i++){
+//     if(arr[i]===number){
+//       return i
+//     }
+//   }
+//   return -1
+
+// }
+
+// const testArray = 'omgwowowasgogoomg omg'
+// const testNumber = 'omg'
+
+// function linearSearch(arr,stringPhrase){
+
+//   let firstPointer = 0;
+//   let secondPointer = 0;
+//   let count = 0;
+//   let phraseLength = stringPhrase.length-1
+
+//   while(firstPointer < arr.length){ 
+    
+//     if(arr[firstPointer]===stringPhrase[secondPointer]){
+//       secondPointer++
+//       if(secondPointer === phraseLength){
+//         count ++;
+//         firstPointer = firstPointer - secondPointer - 1
+//         secondPointer = 0;
+//       }
+//     }
+
+//     firstPointer++;
+//   }
+
+
+//   return count;
+// }
+
+
+// console.log(linearSearch(testArray,testNumber))
+
+
+// function ForLoop (arr){
+//   let noswaps;
+  
+//   for(let i = 0; i < arr.length ; i ++){
+//    let firstValue = arr[i];
+//    let firstIndex = i;
+//     for(let j = i + 1; j< arr.length; j++){
+//       if (firstValue > arr[j]){
+//           firstValue = arr[j]
+//             firstIndex = j;
+//       }
+//       }
+
+//       if(arr[i] != firstValue){
+//         arr = swap(arr,firstValue, firstIndex, i ) 
+//       }
+
+//     }
+    
+
+
+//   return arr
+// }
+
+// const swap = (arr, x, index2, i) => {
+//     let temp = arr[i];
+//     arr[i] = arr[index2];
+//     arr[index2] = temp;
+  
+//     return arr
+// }
+
+// console.log(ForLoop(testArray))
+
+// console.log(ForLoop(testArray))
+
+// const testArray = [1,4,101,29,10,6,7,8,99,12,25,1000]
+
+// const insertionSort = (arr) =>{
+
+//   for(let i = 0; i < arr.length; i ++){
+//     let temp1 = i;
+//     let temp2 = i + 1;
+//       while(temp1 >= 0){
+//         if(arr[temp1]>arr[temp2]){
+//           arr = swap(arr,temp1,temp2)
+//         }
+//         temp1--;
+//         temp2--;
+//     }
+//   }
+//   return arr; 
+// } 
+
+// const swap = (arr,ele1,ele2) => {
+//   let temp = arr[ele1];
+//   arr[ele1] = arr[ele2];
+//   arr[ele2] = temp;
+//   return arr;
+// }
+
+// console.log(insertionSort(testArray))
+
+const testArray2 = [1,10,50,2,14,99,3]
+
+const mergingArray = (arr1,arr2) => {
+
+  while((i<arr1.length)&&(j<arr2.length)){
+
+    if(arr1[i]<arr2[j]){
+      arrA.push(arr1[i])
+      i++
+    }else if(arr1[i]>arr2[j]){
+      arrA.push(arr2[j])
+      j++
     }
+  }
+
+  while((j<arr2.length)){
+      arrA.push(arr2[j])
+      j++
+    }
+
+  while((i<arr1.length)){
+    arrA.push(arr2[i])
+    i++
+  }
+  
+  return arrA;
 }
 
 
-console.log(stringifyNumbers(obj))
+const recursion = (arr) => {
+  if((arr.length === 1)||(arr.length === 0)){
+    return arr
+  }
+  if(arr.length % 2 === 0){
+    recursion(arr.slice(0,arr.length/2))
+    recursion(arr.slice(arr.length/2))
+  } else{
+    recursion(arr.slice(0,Math.floor(arr.length/2)))
+    recursion(arr.slice(Math.floor(arr.length/2)))
+  }
 
-function stringifyNumbers (obj) {
-    let total = 0;
-    let newObject = {
-      ...obj
-    };
-    let answer = inner(newObject)
-    return answer
-  }
-  
-  function inner(objz){
-    for(let key in objz){
-      if(thingOrNot(objz[key],"number")){
-        objz[key] = stringNumber(objz[key]);
-      }
-  
-        if(thingOrNot(objz[key],"object")){
-          inner(objz[key]);
-        }
-    }
-    
-    return objz
-    
-  }
-  
-  function thingOrNot(something, thing){
-    return (typeof(something)===thing)
-  }
-  
-  function stringNumber(num){
-    return String(num)
-  }
-  
+
+}
+
+function outterFunction(testArray2){
+  const arrZ = []
+  return recursion(testArray2,arrZ)
+}
+
+console.log(outterFunction(testArray2))

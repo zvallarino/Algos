@@ -832,53 +832,92 @@
 
 // console.log(insertionSort(testArray))
 
-const testArray2 = [1,10,50,2,14,99,3]
+// const testArray2 = [1,10,50,2,29,202,240]
 
-const mergingArray = (arr1,arr2) => {
+// let test = [1]
 
-  while((i<arr1.length)&&(j<arr2.length)){
+// let test2 = [2]
 
-    if(arr1[i]<arr2[j]){
-      arrA.push(arr1[i])
-      i++
-    }else if(arr1[i]>arr2[j]){
-      arrA.push(arr2[j])
-      j++
-    }
-  }
-
-  while((j<arr2.length)){
-      arrA.push(arr2[j])
-      j++
-    }
-
-  while((i<arr1.length)){
-    arrA.push(arr2[i])
-    i++
-  }
+// function mergeSort(arr1, arr2){
+//   let i = 0;
+//   let j = 0;
+//   let answerArr = [];
   
-  return arrA;
+//   while(i < arr1.length || j < arr2.length ){
+      
+//       if(arr1[i] < arr2[j]){
+//           answerArr.push(arr1[i])
+//           i++ 
+//       }
+//       if(arr2[j] < arr1[i]){
+//           answerArr.push(arr2[j])
+//           j++
+//       }
+//       if( i === arr1.length){
+//           return answerArr.concat(arr2.slice(j))
+//       }
+      
+//       if( j === arr2.length){
+//           return answerArr.concat(arr1.slice(i))
+//       }
+//   }
+//   return answerArr
+// }
+
+
+
+// function recursion(arr){
+//   if(arr.length <= 1){
+//       return arr
+//   }
+//     if(arr.length % 2 === 0){
+//   return mergeSort(recursion(arr.slice(arr.length /2)), recursion(arr.slice(0, Math.floor(arr.length/2))))
+// } else {
+//     return mergeSort(recursion(arr.slice(0, Math.floor(arr.length/2))), recursion(arr.slice(Math.floor(arr.length/2))))
+// } 
+// }
+
+// function outterFunction(testArray2){
+//   return recursion(testArray2)
+// }
+
+// console.log(outterFunction(testArray2))
+
+// console.log(outterFunction(testArray2))
+
+
+const testArray2 = [1,10,50,2,29,202]
+
+const testArray = [25,10,50,2,75,100,99]
+
+const swap = (arr,ele1,ele2) =>{
+  let temp = arr[ele1];
+  arr[ele1] = arr[ele2]
+  arr[ele2] = temp
+  return arr
 }
 
 
-const recursion = (arr) => {
-  if((arr.length === 1)||(arr.length === 0)){
-    return arr
+const pivotBot = (arr,start,end) => {
+  let pivotIndex = start;
+  const pivot = arr[start]
+    for(let i = start + 1; i<end;i++){
+      if(pivot>arr[i]){
+        pivotIndex++
+        arr = swap(arr,i,pivotIndex)
+      }
+    }
+    arr = swap(arr,start,pivotIndex)
+    return pivotIndex
   }
-  if(arr.length % 2 === 0){
-    recursion(arr.slice(0,arr.length/2))
-    recursion(arr.slice(arr.length/2))
-  } else{
-    recursion(arr.slice(0,Math.floor(arr.length/2)))
-    recursion(arr.slice(Math.floor(arr.length/2)))
-  }
 
 
+
+const outterFunction = (arrZ) => {
+  const starter = 0;
+  const ender = arrZ.length;
+  return pivotBot(arrZ,starter,ender)
 }
 
-function outterFunction(testArray2){
-  const arrZ = []
-  return recursion(testArray2,arrZ)
-}
+console.log(outterFunction(testArray))
 
-console.log(outterFunction(testArray2))

@@ -1,3 +1,5 @@
+// import {testArray} from "./Constants";
+
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 // import './index.css';
@@ -886,38 +888,97 @@
 // console.log(outterFunction(testArray2))
 
 
-const testArray2 = [1,10,50,2,29,202]
 
-const testArray = [25,10,50,2,75,100,99]
-
-const swap = (arr,ele1,ele2) =>{
-  let temp = arr[ele1];
-  arr[ele1] = arr[ele2]
-  arr[ele2] = temp
-  return arr
-}
+// const swap = (arr,ele1,ele2) =>{
+//   let temp = arr[ele1];
+//   arr[ele1] = arr[ele2]
+//   arr[ele2] = temp
+//   return arr
+// }
 
 
-const pivotBot = (arr,start,end) => {
-  let pivotIndex = start;
-  const pivot = arr[start]
-    for(let i = start + 1; i<end;i++){
-      if(pivot>arr[i]){
-        pivotIndex++
-        arr = swap(arr,i,pivotIndex)
-      }
-    }
-    arr = swap(arr,start,pivotIndex)
-    return pivotIndex
+// const pivotBot = (arr,start,end) => {
+//   let pivotIndex = start;
+//   const pivot = arr[start]
+//     for(let i = start + 1; i<end;i++){
+//       if(pivot>arr[i]){
+//         pivotIndex++
+//         arr = swap(arr,i,pivotIndex)
+//       }
+//     }
+//     arr = swap(arr,start,pivotIndex)
+//     return pivotIndex
+//   }
+
+
+
+// const outterFunction = (arrZ) => {
+//   const starter = 0;
+//   const ender = arrZ.length;
+//   return pivotBot(arrZ,starter,ender)
+// }
+
+// const quickSort = (arr,left = 0, right = arr.length) => {
+//   if(left < right){
+//   let pivotIndex = pivotBot(arr, left, right);
+//   quickSort(arr,left,pivotIndex);
+//   quickSort(arr,pivotIndex+1,right)}
+//   return arr
+
+// }
+
+// const testArray = [25,10,8,9,10,11,100]
+
+// console.log(quickSort(testArray))
+
+const testNumber = 732
+const testIndex = 0
+
+
+const getDigit = (num, ind) => {
+  let stringNum = String(num)
+  let index = (stringNum.length - 1) - ind
+  if(index<0){
+    return 0
+  } else {
+    return parseInt(stringNum[index])
   }
-
-
-
-const outterFunction = (arrZ) => {
-  const starter = 0;
-  const ender = arrZ.length;
-  return pivotBot(arrZ,starter,ender)
 }
 
-console.log(outterFunction(testArray))
+const digitCount = (num) => {
+  return String(num).length
+}
 
+const mostDigits = (arr) => {
+  let highestDigits = -Infinity;
+    for(let i = 0;i<arr.length;i++){
+        if (digitCount(arr[i])>highestDigits){
+          highestDigits = digitCount(arr[i])
+        }
+    }
+  return highestDigits
+}
+
+const testArray = [4,592,1]
+
+
+const radixSort = (arr) => {
+  k = 0;
+  let answer = [];
+  while (k <= mostDigits(arr)){
+    let groupingArray =[]
+    for(let i = 0; i <arr.length;i++){
+      let currentNumber = getDigit(arr[i],k)
+      if(!(groupingArray.includes(currentNumber))){
+        groupingArray[currentNumber] = arr[i]
+      }
+   
+      // if(i == getDigits)([])
+      //    4 == 
+    }
+    console.log(groupingArray)
+    k++
+  }
+}
+
+console.log(radixSort(testArray))

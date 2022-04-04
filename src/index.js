@@ -931,6 +931,161 @@
 
 // console.log(quickSort(testArray))
 
+
+
+// console.log(radixSort(testArray))
+
+// function findNext(number, n)
+// {
+     
+//     // Start from the right most digit
+//     // and find the first digit that is
+//     // smaller than the digit next to it
+//     for(var i = n - 1; i >= 0; i--)
+//     {
+//         if (number[i] > number[i - 1])
+//         console.log(number[i])
+//             break;
+//     }
+     
+//     // If no such digit found,then all
+//     // numbers are in descending order,
+//     // no greater number is possible
+//     if (i == 1 && number[i] <= number[i - 1])
+//     {
+//         document.write("Next number not possible");
+//         return;
+//     }  
+     
+//     // Find the sNum digit on the
+//     // right side of (i-1)'th digit
+//     // that is greater than number[i-1]
+//     let x = number[i - 1];
+//     let smallest = i;
+     
+//     for(let j = i + 1; j < n; j++)
+//     {
+//         if (number[j] > x &&
+//             number[j] < number[smallest])
+//         smallest = j;
+//     }
+     
+//     // Swapping the above found smallest
+//     // digit with (i-1)'th
+//     let temp = number[smallest];
+//     number[smallest] = number[i - 1];
+//     number[i - 1] = temp;
+     
+//     // X is the final number, in integer datatype
+//     x = 0
+     
+//     // Converting list upto i-1 into number
+//     for(let j = 0; j < i; j++)
+//         x = x * 10 + number[j];
+     
+//     // Sort the digits after i-1 in ascending order
+//     number = number.slice(i, number.length + 1);
+//     number.sort()
+     
+//     // Converting the remaining sorted
+//     // digits into number
+//     for(let j = 0; j < n - i; j++)
+//         x = x * 10 + number[j];
+     
+//     console.log(("Next number with " +
+//                    "set of digits is " + x));
+// }
+ 
+// // Driver code
+// let digits = "1534"      
+ 
+// // Converting into integer array,
+// // number becomes [5,3,4,9,7,6]
+// let number = []
+// for(let i = 0; i < digits.length; i++)
+//     number[i] = Number(digits[i]);
+ 
+// findNext(number, digits.length);
+
+
+// const testNumber = 123;
+
+// function numSplitter(num) {
+// num = String(num)
+// return num
+// }
+
+// const stringToArray = (wString) =>{
+//   return wString.split("").map(singleNumber => parseInt(singleNumber))
+//   }
+
+// const swap = (arr,small,big) => {
+//   let temp = arr[small];
+//   arr[small] = arr[big - 1];
+//   arr[big - 1] = temp;
+//   return arr
+// }
+
+// const swapToNumber = (finalNum, arr, inx) => {
+//   for(let j = 0; j < inx; j++)
+//   { finalNum = finalNum * 10 + arr[j];}
+//   return finalNum
+// }
+
+
+// function findNext(numArr, n)
+// {
+//      let i = n - 1;
+//     while(i >= 0){
+//     {
+//         if (numArr[i] > numArr[i - 1])
+//             break;
+//     }
+//     i--}
+     
+//     let x = numArr[i - 1];
+//     let sNum = i;
+     
+//     for(let j = i + 1; j < n; j++)
+//     {
+//         if (numArr[j] > x &&
+//             numArr[j] < numArr[sNum])
+//         sNum = j;
+//     }
+     
+//     numArr = swap(numArr,sNum,i)
+     
+//     x = 0
+     
+//     x = swapToNumber(x,numArr,i);
+
+     
+//     numArr = numArr.slice(i, numArr.length + 1);
+//     numArr.sort()
+     
+//     x = swapToNumber(x,numArr,n-i);
+
+//     if(!x){
+//       return (-1)
+//     }else{
+//       return (x)
+//     }
+// }
+ 
+
+
+
+
+// function MathChallenge(num){
+//   let numberString = String(num);
+//   let numberLength = numberString.length;  
+//   let number = stringToArray(numberString);
+//   return (findNext(number, numberLength));
+
+// }
+
+// console.log(MathChallenge(123))
+
 const testNumber = 732
 const testIndex = 0
 
@@ -959,26 +1114,38 @@ const mostDigits = (arr) => {
   return highestDigits
 }
 
-const testArray = [4,592,1]
+const testArray = [5,7123,401,23,1,3,69,372,6021]
 
 
 const radixSort = (arr) => {
-  k = 0;
+
   let answer = [];
-  while (k <= mostDigits(arr)){
-    let groupingArray =[]
-    for(let i = 0; i <arr.length;i++){
-      let currentNumber = getDigit(arr[i],k)
-      if(!(groupingArray.includes(currentNumber))){
-        groupingArray[currentNumber] = arr[i]
-      }
-   
-      // if(i == getDigits)([])
-      //    4 == 
+  const digitsLength = mostDigits(arr);
+  let newArray = arr;
+
+  for(let i = 0; i < digitsLength; i++){
+    for(let j = 0; j < arr.length;j++){
+        answer = Helper(answer,(getDigit(newArray[j],i)),newArray[j])
     }
-    console.log(groupingArray)
-    k++
+    newArray = arrayMerger(answer)
+    answer = []
   }
+  return newArray
 }
 
 console.log(radixSort(testArray))
+
+function Helper (arr,key,element){
+  if(!(arr[key])){
+    arr[key] = [element]
+  } else {
+    arr[key].push(element)
+  }
+  return arr
+}
+
+let testArray200 = [[1],[2]];
+function arrayMerger(arr) {
+  let newArray = arr.filter(value =>(typeof(value) === "object"))
+ return [].concat.apply([],newArray)
+}

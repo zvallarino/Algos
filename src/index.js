@@ -1086,66 +1086,140 @@
 
 // console.log(MathChallenge(123))
 
-const testNumber = 732
-const testIndex = 0
+// const testNumber = 732
+// const testIndex = 0
 
 
-const getDigit = (num, ind) => {
-  let stringNum = String(num)
-  let index = (stringNum.length - 1) - ind
-  if(index<0){
-    return 0
-  } else {
-    return parseInt(stringNum[index])
+// const getDigit = (num, ind) => {
+//   let stringNum = String(num)
+//   let index = (stringNum.length - 1) - ind
+//   if(index<0){
+//     return 0
+//   } else {
+//     return parseInt(stringNum[index])
+//   }
+// }
+
+// const digitCount = (num) => {
+//   return String(num).length
+// }
+
+// const mostDigits = (arr) => {
+//   let highestDigits = -Infinity;
+//     for(let i = 0;i<arr.length;i++){
+//         if (digitCount(arr[i])>highestDigits){
+//           highestDigits = digitCount(arr[i])
+//         }
+//     }
+//   return highestDigits
+// }
+
+// const testArray = [5,7123,401,23,1,3,69,372,6021]
+
+
+// const radixSort = (arr) => {
+
+//   let answer = [];
+//   const digitsLength = mostDigits(arr);
+//   let newArray = arr;
+
+//   for(let i = 0; i < digitsLength; i++){
+//     for(let j = 0; j < arr.length;j++){
+//         answer = Helper(answer,(getDigit(newArray[j],i)),newArray[j])
+//     }
+//     newArray = arrayMerger(answer)
+//     answer = []
+//   }
+//   return newArray
+// }
+
+// console.log(radixSort(testArray))
+
+// function Helper (arr,key,element){
+//   if(!(arr[key])){
+//     arr[key] = [element]
+//   } else {
+//     arr[key].push(element)
+//   }
+//   return arr
+// }
+
+// let testArray200 = [[1],[2]];
+
+// function arrayMerger(arr) {
+//   let newArray = arr.filter(value =>(typeof(value) === "object"))
+//  return [].concat(...newArray)
+// }
+
+// class Student {
+//   constructor(firstName, lastName, grade){
+//     this.firstName = firstName;
+//     this.lastName = lastName;
+//     this.grade = grade; 
+//     this.tardies = 0; 
+//     this.scores = [];
+//   }
+
+//   fullname(){
+//     return `${this.firstName} ${this.lastName}`
+//   }
+//   markLate(){
+//     this.tardies +=1;
+//     if(this.tardies >= 3){
+//       return "LEAVE GET OUT ITS THE END OF YOU AND ME"
+//     }
+//     return `${this.firstName} ${this.lastName} has been late ${this.tardies} times`
+//   }
+
+//   addScore(score){
+//     this.scores.push(score);
+
+//   }
+// }
+
+// const firstStudent = new Student("Zach","Vallarino",12);
+// const lastStudent = new Student("Madison","Vallarino",8);
+// firstStudent.markLate()
+// firstStudent.markLate()
+// firstStudent.markLate()
+// firstStudent.markLate()
+// console.log(firstStudent.markLate())        
+
+class Node{
+  constructor(val){
+    this.val = val;
+    this.next = null;
   }
 }
 
-const digitCount = (num) => {
-  return String(num).length
-}
+class SinglyLinkedList{
 
-const mostDigits = (arr) => {
-  let highestDigits = -Infinity;
-    for(let i = 0;i<arr.length;i++){
-        if (digitCount(arr[i])>highestDigits){
-          highestDigits = digitCount(arr[i])
-        }
+  constructor(){
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  push(val){
+    let temp = new Node(val);
+
+    if(!(this.head)){
+      this.head = temp;
+      this.tail = temp;
+    }else{
+      this.tail.next = temp
+      this.head = this.tail
+      this.tail = temp
+      
     }
-  return highestDigits
-}
-
-const testArray = [5,7123,401,23,1,3,69,372,6021]
-
-
-const radixSort = (arr) => {
-
-  let answer = [];
-  const digitsLength = mostDigits(arr);
-  let newArray = arr;
-
-  for(let i = 0; i < digitsLength; i++){
-    for(let j = 0; j < arr.length;j++){
-        answer = Helper(answer,(getDigit(newArray[j],i)),newArray[j])
-    }
-    newArray = arrayMerger(answer)
-    answer = []
+    this.length ++;
   }
-  return newArray
 }
 
-console.log(radixSort(testArray))
 
-function Helper (arr,key,element){
-  if(!(arr[key])){
-    arr[key] = [element]
-  } else {
-    arr[key].push(element)
-  }
-  return arr
-}
-
-let testArray200 = [[1],[2]];
-function arrayMerger(arr) {
-  let newArray = arr.filter(value =>(typeof(value) === "object"))
- return [].concat.apply([],newArray)
-}
+let list = new SinglyLinkedList()
+list.push(3);
+list.push(4);
+list.push(5);
+list.push(6);
+console.log(list);
